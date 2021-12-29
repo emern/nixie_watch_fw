@@ -64,3 +64,4 @@ cprint.c
 ######################
 STM8_EVAL*
 STM8L15x_StdPeriph_Examples*
+.vscode*

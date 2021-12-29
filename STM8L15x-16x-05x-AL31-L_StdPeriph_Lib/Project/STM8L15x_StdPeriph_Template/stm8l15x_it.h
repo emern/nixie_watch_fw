@@ -31,6 +31,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm8l15x.h"
+#include "stm8l15x_gpio.h"
+#include "hardwaredefs.h"
+#include "state_machine.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

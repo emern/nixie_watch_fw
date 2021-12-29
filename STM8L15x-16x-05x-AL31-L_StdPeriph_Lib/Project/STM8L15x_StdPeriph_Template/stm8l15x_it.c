@@ -157,9 +157,13 @@ INTERRUPT_HANDLER(EXTID_H_IRQHandler,7)
   */
 INTERRUPT_HANDLER(EXTI0_IRQHandler,8)
 {
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
+  /* Queue new print time message if not other request is being processed */
+  if (!state_machine.executing_state)
+  {
+    state_machine_request.message = STATE_MESSAGE_PRINT_TIME;
+  }
+  GPIO_ToggleBits(LED_GPIO_PORT, LED_GPIO_PINS);
+  EXTI_ClearITPendingBit(EXTI_IT_Pin0);
 }
 
 /**
@@ -169,9 +173,13 @@ INTERRUPT_HANDLER(EXTI0_IRQHandler,8)
   */
 INTERRUPT_HANDLER(EXTI1_IRQHandler,9)
 {
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
+  /* Power device down (no longer accept any other requests) */
+  if (!state_machine.executing_state)
+  {
+    state_machine_request.message = STATE_MESSAGE_SET_SLEEP;
+  }
+  GPIO_ToggleBits(LED_GPIO_PORT, LED_GPIO_PINS);
+  EXTI_ClearITPendingBit(EXTI_IT_Pin1);
 }
 
 /**
@@ -181,9 +189,13 @@ INTERRUPT_HANDLER(EXTI1_IRQHandler,9)
   */
 INTERRUPT_HANDLER(EXTI2_IRQHandler,10)
 {
-    /* In order to detect unexpected events during development,
-       it is recommended to set a breakpoint on the following instruction.
-    */
+  /* Set device to sleep mode (now accepts requests)*/
+  if (!state_machine.executing_state)
+  {
+    state_machine_request.message = STATE_MESSAGE_POWER_DOWN;
+  }
+  GPIO_ToggleBits(LED_GPIO_PORT, LED_GPIO_PINS);
+  EXTI_ClearITPendingBit(EXTI_IT_Pin2);
 }
 
 /**

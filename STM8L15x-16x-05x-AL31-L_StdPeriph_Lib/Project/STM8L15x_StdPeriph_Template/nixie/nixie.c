@@ -24,7 +24,6 @@ nixie_psu_t shared_psu = {
 /*                P U B L I C  G L O B A L  V A R I A B L E S                 */
 /******************************************************************************/
 nixie_tube_t tube_A = {
-
     {{DIGIT_OFF, GPIOE, GPIO_Pin_0}, {DIGIT_OFF, GPIOE, GPIO_Pin_1}, {DIGIT_OFF, GPIOE, GPIO_Pin_2},
      {DIGIT_OFF, GPIOE, GPIO_Pin_3}, {DIGIT_OFF, GPIOE, GPIO_Pin_4}, {DIGIT_OFF, GPIOE, GPIO_Pin_5},
      {DIGIT_OFF, GPIOE, GPIO_Pin_6}, {DIGIT_OFF, GPIOE, GPIO_Pin_7}, {DIGIT_OFF, GPIOA, GPIO_Pin_6},

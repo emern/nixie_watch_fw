@@ -10,6 +10,7 @@
 #include "nixie.h"
 #include "uart.h"
 #include "ext_rtc.h"
+#include "state_machine.h"
 
 /* Private function prototypes */
 void Delay (uint16_t nCount);
@@ -17,16 +18,15 @@ void Delay (uint16_t nCount);
 
 void main(void)
 {
-  /* Initialize system variables */
-  uint8_t i2c_data[] = {0,0};
-  uint8_t secs_dec = 0;
-  uint8_t secs_dec_last = 0;
-
   /* High speed internal clock prescaler: 1 */
   CLK_SYSCLKDivConfig(CLK_SYSCLKDiv_2);
   /* Initialize LEDs mounted on STM8L152X-EVAL board */
   GPIO_Init(LED_GPIO_PORT, LED_GPIO_PINS, GPIO_Mode_Out_PP_Low_Fast);
   GPIO_ExternalPullUpConfig(LED_GPIO_PORT, LED_GPIO_PINS, ENABLE);
+
+  sm_configure_interrupts(&state_machine);
+
+  enableInterrupts();
 
   /* Configure UART module */
   init_uart();
@@ -40,23 +40,11 @@ void main(void)
   while (1)
   {
 
-    /* Read rtc data */
-    ext_rtc_read(i2c_data, RTC_PAY_READ_SIZE);
-    /* Decode number of seconds recieved (always first byte) to determine if print is needed */
-    secs_dec = ext_rtc_decode(i2c_data[0]);
+    /* Check new state machine request */
+    sm_execute_requests(&state_machine, &state_machine_request);
 
-    /* Print time data if new second has rolled over */
-    if (secs_dec != secs_dec_last)
-    {
-      secs_dec_last = secs_dec;
-      ext_rtc_print_val(i2c_data[0], RTC_PRINT_SECONDS);
-      ext_rtc_print_val(i2c_data[1], RTC_PRINT_MINUTES);
-      nixie_digit_control(&tube_A, secs_dec % 10, DIGIT_ON, &shared_psu);
-    }
-
-    /* Toggle on board GPIO and delay */
-    GPIO_ToggleBits(LED_GPIO_PORT, LED_GPIO_PINS);
-    Delay(0xFF00);
+    /* Enter wait for interrupt mode (turns off CPU to save power) (Page 73 of TRM doc # RM0031) */
+    wfi();
   }
 }
 
