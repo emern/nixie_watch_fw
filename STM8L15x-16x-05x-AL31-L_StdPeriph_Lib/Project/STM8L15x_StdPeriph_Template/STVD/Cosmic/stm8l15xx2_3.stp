@@ -27,7 +27,7 @@ Debug=$(TargetFName)
 [Root]
 ElemType=Project
 PathName=STM8L15X_LD(STM8L15xx2_3)
-Child=Root...\..\ext_rtc\ext_rtc.h
+Child=Root...\..\state_machine\state_machine.h
 Config.0=Root.Config.0
 Config.1=Root.Config.1
 
@@ -74,7 +74,7 @@ String.6.0=2021,12,20,14,49,23
 String.100.0=$(TargetFName)
 String.101.0=
 String.102.0=
-String.103.0=.\;..\..\..\..\libraries\stm8l15x_stdperiph_driver\src;..\..;..\..\uart;..\..\ext_rtc;
+String.103.0=.\;..\..\..\..\libraries\stm8l15x_stdperiph_driver\src;..\..;..\..\uart;..\..\ext_rtc;..\..\state_machine;
 
 [Root.Config.0.Settings.2]
 String.2.0=
@@ -83,10 +83,10 @@ String.100.0=STM8L151C3
 
 [Root.Config.0.Settings.3]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -dSTM8_BASEBAND -i..\..\state_machine -i..\..\ext_rtc -i..\..\uart -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2021,12,20,14,49,23
+String.6.0=2021,12,29,14,32,59
 
 [Root.Config.0.Settings.4]
 String.2.0=Assembling $(InputFile)...
@@ -155,7 +155,7 @@ Int.108=0
 String.6.0=2011,4,29,18,57,17
 String.100.0=$(TargetFName)
 String.101.0=
-String.103.0=.\;..\..\..\..\libraries\stm8l15x_stdperiph_driver\src;..\..;..\..\nixie;..\..\uart;..\..\ext_rtc;
+String.103.0=.\;..\..\..\..\libraries\stm8l15x_stdperiph_driver\src;..\..;..\..\nixie;..\..\uart;..\..\ext_rtc;..\..\state_machine;
 
 [Root.Config.1.Settings.2]
 String.2.0=
@@ -164,7 +164,7 @@ String.100.0=STM8L151C3
 
 [Root.Config.1.Settings.3]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\state_machine  -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2011,4,29,18,57,17
@@ -213,6 +213,106 @@ String.6.0=2011,4,29,18,57,17
 [Root.Config.1.Settings.8]
 String.2.0=Performing Custom Build on $(InputFile)
 String.6.0=2011,4,29,18,57,17
+
+[Root...\..\state_machine\state_machine.h]
+ElemType=File
+PathName=..\..\state_machine\state_machine.h
+Next=Root...\..\state_machine\state_machine.c
+Config.0=Root...\..\state_machine\state_machine.h.Config.0
+Config.1=Root...\..\state_machine\state_machine.h.Config.1
+
+[Root...\..\state_machine\state_machine.h.Config.0]
+Settings.0.0=Root...\..\state_machine\state_machine.h.Config.0.Settings.0
+Settings.0.1=Root...\..\state_machine\state_machine.h.Config.0.Settings.1
+
+[Root...\..\state_machine\state_machine.h.Config.1]
+Settings.1.0=Root...\..\state_machine\state_machine.h.Config.1.Settings.0
+Settings.1.1=Root...\..\state_machine\state_machine.h.Config.1.Settings.1
+
+[Root...\..\state_machine\state_machine.h.Config.0.Settings.0]
+String.6.0=2021,12,29,11,33,12
+String.8.0=Debug
+Int.0=0
+Int.1=0
+
+[Root...\..\state_machine\state_machine.h.Config.0.Settings.1]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2011,4,29,18,57,17
+
+[Root...\..\state_machine\state_machine.h.Config.1.Settings.0]
+String.6.0=2021,12,29,11,33,12
+String.8.0=Release
+Int.0=0
+Int.1=0
+
+[Root...\..\state_machine\state_machine.h.Config.1.Settings.1]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2011,4,29,18,57,17
+
+[Root...\..\state_machine\state_machine.c]
+ElemType=File
+PathName=..\..\state_machine\state_machine.c
+Next=Root...\..\ext_rtc\ext_rtc.h
+Config.0=Root...\..\state_machine\state_machine.c.Config.0
+Config.1=Root...\..\state_machine\state_machine.c.Config.1
+
+[Root...\..\state_machine\state_machine.c.Config.0]
+Settings.0.0=Root...\..\state_machine\state_machine.c.Config.0.Settings.0
+Settings.0.1=Root...\..\state_machine\state_machine.c.Config.0.Settings.1
+Settings.0.2=Root...\..\state_machine\state_machine.c.Config.0.Settings.2
+
+[Root...\..\state_machine\state_machine.c.Config.1]
+Settings.1.0=Root...\..\state_machine\state_machine.c.Config.1.Settings.0
+Settings.1.1=Root...\..\state_machine\state_machine.c.Config.1.Settings.1
+Settings.1.2=Root...\..\state_machine\state_machine.c.Config.1.Settings.2
+
+[Root...\..\state_machine\state_machine.c.Config.0.Settings.0]
+String.6.0=2021,12,29,11,33,12
+String.8.0=Debug
+Int.0=0
+Int.1=0
+
+[Root...\..\state_machine\state_machine.c.Config.0.Settings.1]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2011,4,29,18,57,17
+
+[Root...\..\state_machine\state_machine.c.Config.0.Settings.2]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -dSTM8_BASEBAND -i..\..\state_machine -i..\..\ext_rtc -i..\..\uart -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2021,12,29,14,32,59
+String.8.0=Debug
+
+[Root...\..\state_machine\state_machine.c.Config.1.Settings.0]
+String.6.0=2021,12,29,11,33,12
+String.8.0=Release
+Int.0=0
+Int.1=0
+
+[Root...\..\state_machine\state_machine.c.Config.1.Settings.1]
+String.2.0=Performing Custom Build on $(InputFile)
+String.3.0=
+String.4.0=
+String.5.0=
+String.6.0=2011,4,29,18,57,17
+
+[Root...\..\state_machine\state_machine.c.Config.1.Settings.2]
+String.2.0=Compiling $(InputFile)...
+String.3.0=cxstm8 -i..\..\state_machine  -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
+String.5.0=$(IntermPath)$(InputName).ls
+String.6.0=2011,4,29,18,57,17
+String.8.0=Release
 
 [Root...\..\ext_rtc\ext_rtc.h]
 ElemType=File
@@ -287,10 +387,10 @@ String.6.0=2011,4,29,18,57,17
 
 [Root...\..\ext_rtc\ext_rtc.c.Config.0.Settings.2]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -dSTM8_BASEBAND -i..\..\state_machine -i..\..\ext_rtc -i..\..\uart -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2021,12,20,14,49,23
+String.6.0=2021,12,29,14,32,59
 String.8.0=Debug
 
 [Root...\..\ext_rtc\ext_rtc.c.Config.1.Settings.0]
@@ -308,7 +408,7 @@ String.6.0=2011,4,29,18,57,17
 
 [Root...\..\ext_rtc\ext_rtc.c.Config.1.Settings.2]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\state_machine  -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2011,4,29,18,57,17
@@ -387,10 +487,10 @@ String.6.0=2011,4,29,18,57,17
 
 [Root...\..\uart\uart.c.Config.0.Settings.2]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -dSTM8_BASEBAND -i..\..\state_machine -i..\..\ext_rtc -i..\..\uart -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2021,12,20,14,49,23
+String.6.0=2021,12,29,14,32,59
 String.8.0=Debug
 
 [Root...\..\uart\uart.c.Config.1.Settings.0]
@@ -408,7 +508,7 @@ String.6.0=2011,4,29,18,57,17
 
 [Root...\..\uart\uart.c.Config.1.Settings.2]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\state_machine  -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2011,4,29,18,57,17
@@ -487,10 +587,10 @@ String.6.0=2011,4,29,18,57,17
 
 [Root...\..\nixie\nixie.c.Config.0.Settings.2]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -dSTM8_BASEBAND -i..\..\state_machine -i..\..\ext_rtc -i..\..\uart -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2021,12,20,14,49,23
+String.6.0=2021,12,29,14,32,59
 String.8.0=Debug
 
 [Root...\..\nixie\nixie.c.Config.1.Settings.0]
@@ -508,7 +608,7 @@ String.6.0=2011,4,29,18,57,17
 
 [Root...\..\nixie\nixie.c.Config.1.Settings.2]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\state_machine  -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2011,4,29,18,57,17
@@ -542,10 +642,10 @@ Int.1=0
 
 [Root.STM8L15x_StdPeriph_Driver.Config.0.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -dSTM8_BASEBAND -i..\..\state_machine -i..\..\ext_rtc -i..\..\uart -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2021,12,20,14,49,23
+String.6.0=2021,12,29,14,32,59
 
 [Root.STM8L15x_StdPeriph_Driver.Config.0.Settings.2]
 String.2.0=Assembling $(InputFile)...
@@ -569,7 +669,7 @@ Int.1=0
 
 [Root.STM8L15x_StdPeriph_Driver.Config.1.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\state_machine  -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2011,4,29,18,57,17
@@ -734,10 +834,10 @@ Int.1=0
 
 [Root.User.Config.0.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt +compact +split -customC-pp -customLst -l -dSTM8L15X_LD -dUSE_STM8L1526_EVAL -dSTM8_BASEBAND -i..\..\state_machine -i..\..\ext_rtc -i..\..\uart -i..\..\nixie -i..\.. -i..\..\..\..\libraries\stm8l15x_stdperiph_driver\inc -i..\..\..\..\utilities\stm8_eval -i..\..\..\..\utilities\stm8_eval\common -i..\..\..\..\utilities\stm8_eval\stm8l1526_eval -i..\..\..\..\utilities\misc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2021,12,20,14,49,23
+String.6.0=2021,12,29,14,32,59
 
 [Root.User.Config.0.Settings.2]
 String.2.0=Assembling $(InputFile)...
@@ -761,7 +861,7 @@ Int.1=0
 
 [Root.User.Config.1.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\state_machine  -i..\..\ext_rtc  -i..\..\uart  -i..\..\nixie  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2011,4,29,18,57,17

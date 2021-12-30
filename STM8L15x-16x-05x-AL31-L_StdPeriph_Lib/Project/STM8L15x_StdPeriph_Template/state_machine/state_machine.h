@@ -11,6 +11,7 @@
 /******************************************************************************/
 #include "stm8l15x_gpio.h"
 #include "ext_rtc.h"
+#include "nixie.h"
 
 /******************************************************************************/
 /*                               D E F I N E S                                */
@@ -44,11 +45,11 @@ typedef enum
 
   STATE_MESSAGE_SET_SLEEP, /* Set watch to sleep/idle mode, ready to accept print requests */
 
-  STATE_MESSAGE_POWER_DOWN, /**/
+  STATE_MESSAGE_POWER_DOWN, /* Set watch to sleep while not accepting any inputs */
 
-  STATE_MESSAGE_PRINT_TIME,
+  STATE_MESSAGE_PRINT_TIME, /* Print RTC time */
 
-  STATE_MESSAGE_SET_TIME
+  STATE_MESSAGE_SET_TIME /* Set RTC time */
 
 } state_message_t;
 
@@ -93,7 +94,7 @@ typedef struct
 } state_machine_t;
 
 /**
- * @brief State machine message struct, TODO: determine if more complicated queue setup is needed here
+ * @brief State machine message struct
  */
 typedef struct
 {

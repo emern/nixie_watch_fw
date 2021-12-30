@@ -86,6 +86,9 @@ typedef struct
 /******************************************************************************/
 extern nixie_tube_t tube_A;
 extern nixie_psu_t shared_psu;
+#ifndef STM8_BASEBAND
+extern nixie_tube_t tube_B;
+#endif
 
 /******************************************************************************/
 /*                             F U N C T I O N S                              */

@@ -7,6 +7,7 @@
 /*                              I N C L U D E S                               */
 /******************************************************************************/
 #include "nixie.h"
+#include "hardwaredefs.h"
 
 /******************************************************************************/
 /*               P R I V A T E  G L O B A L  V A R I A B L E S                */
@@ -15,20 +16,29 @@
 nixie_psu_t shared_psu = {
     FALSE,
 
-    GPIOA,
+    NIXIE_SUPPLY_PORT,
 
-    GPIO_Pin_5
+    NIXIE_SUPPLY_PIN
 };
 
 /******************************************************************************/
 /*                P U B L I C  G L O B A L  V A R I A B L E S                 */
 /******************************************************************************/
 nixie_tube_t tube_A = {
-    {{DIGIT_OFF, GPIOE, GPIO_Pin_0}, {DIGIT_OFF, GPIOE, GPIO_Pin_1}, {DIGIT_OFF, GPIOE, GPIO_Pin_2},
-     {DIGIT_OFF, GPIOE, GPIO_Pin_3}, {DIGIT_OFF, GPIOE, GPIO_Pin_4}, {DIGIT_OFF, GPIOE, GPIO_Pin_5},
-     {DIGIT_OFF, GPIOE, GPIO_Pin_6}, {DIGIT_OFF, GPIOE, GPIO_Pin_7}, {DIGIT_OFF, GPIOA, GPIO_Pin_6},
-     {DIGIT_OFF, GPIOA, GPIO_Pin_7}}
+    {{DIGIT_OFF, TUBE_A_PORT_0, DIGIT_A_0}, {DIGIT_OFF, TUBE_A_PORT_1, DIGIT_A_1}, {DIGIT_OFF, TUBE_A_PORT_2, DIGIT_A_2},
+     {DIGIT_OFF, TUBE_A_PORT_3, DIGIT_A_3}, {DIGIT_OFF, TUBE_A_PORT_4, DIGIT_A_4}, {DIGIT_OFF, TUBE_A_PORT_5, DIGIT_A_5},
+     {DIGIT_OFF, TUBE_A_PORT_6, DIGIT_A_6}, {DIGIT_OFF, TUBE_A_PORT_7, DIGIT_A_7}, {DIGIT_OFF, TUBE_A_PORT_8, DIGIT_A_8},
+     {DIGIT_OFF, TUBE_A_PORT_9, DIGIT_A_9}}
 };
+
+#ifndef STM8_BASEBAND
+nixie_tube_t tube_B = {
+    {{DIGIT_OFF, TUBE_B_PORT_0, DIGIT_B_0}, {DIGIT_OFF, TUBE_B_PORT_1, DIGIT_B_1}, {DIGIT_OFF, TUBE_B_PORT_2, DIGIT_B_2},
+     {DIGIT_OFF, TUBE_B_PORT_3, DIGIT_B_3}, {DIGIT_OFF, TUBE_B_PORT_4, DIGIT_B_4}, {DIGIT_OFF, TUBE_B_PORT_5, DIGIT_B_5},
+     {DIGIT_OFF, TUBE_B_PORT_6, DIGIT_A_6}, {DIGIT_OFF, TUBE_B_PORT_7, DIGIT_A_7}, {DIGIT_OFF, TUBE_B_PORT_8, DIGIT_B_8},
+     {DIGIT_OFF, TUBE_B_PORT_9, DIGIT_B_9}}
+};
+#endif /* STM8_BASEBAND */
 
 /******************************************************************************/
 /*                       P U B L I C  F U N C T I O N S                       */
