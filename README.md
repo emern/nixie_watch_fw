@@ -31,6 +31,14 @@ Hardware files for the supported targets are avaliable here:
 * [Breakout board](https://github.com/emern/stm8l_hw_r10)
 * [Nixie watch hardware](https://github.com/emern/nixie_watch_hw)
 
+### Development
+
+All modified/additional firmware files can be found in the ```<PROJECT_ROOT>/nixie_watch_fw/STM8L15x-16x-05x-AL31-L_StdPeriph_Lib/Project/STM8L15x-16x-05x-AL31-L_StdPeriph_Lib/``` directory. Each specific driver is separated into a "package" which is then included in higher level packages/main. Basic information about current packages below:<br/>
+* ext_rtc - External RTC (DS1307Z) communication library via I2C (only avaliable on breakout board)
+* nixie - Nixie tube driver (by default only one tube is supported on the breakout, whereas two are supported on watch hardware)
+* state_machine - Interrupt driven state machine to implement watch logic while maintaining low power usage
+* uart - UART to host communication helper library (only avaliable on breakout board)
+
 ### Flashing/Debugging
 
 The compiled binaries can be flashed using an ST-Link programmer with the STVP utility. If using the STM8 Breakout board, it is recommended to connect external STSP switches to ground on GPIOE pins 0, 1, 2, 3. The STM8 Breakout board also has USB host support, if desired it can be connected to a host PC and monitored via a terminal program such as [PuTTY](https://www.putty.org/).
